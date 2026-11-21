@@ -24,18 +24,63 @@ EVERY 1 TICK DO
             INPUT FROM S
             OUTPUT RETAIN 5 TO B SLOT 1
         ELSE
-            INPUT 1 FROM B SLOT 3
-            INPUT 1 FROM B SLOT 5
-            OUTPUT TO S
+            IF B SLOT 3 HAS >= 100000000 AND B SLOT 5 HAS >= 100000000 THEN
+                INPUT 100000000 FROM B SLOT 3
+                INPUT 100000000 FROM B SLOT 5
+                OUTPUT TO S
+            ELSE IF B SLOT 3 HAS >= 1000000 AND B SLOT 5 HAS >= 1000000 THEN
+                INPUT 1000000 FROM B SLOT 3
+                INPUT 1000000 FROM B SLOT 5
+                OUTPUT TO S
+            ELSE IF B SLOT 3 HAS >= 10000 AND B SLOT 5 HAS >= 10000 THEN
+                INPUT 10000 FROM B SLOT 3
+                INPUT 10000 FROM B SLOT 5
+                OUTPUT TO S
+            ELSE IF B SLOT 3 HAS >= 100 AND B SLOT 5 HAS >= 100 THEN
+                INPUT 100 FROM B SLOT 3
+                INPUT 100 FROM B SLOT 5
+                OUTPUT TO S
+            ELSE
+                INPUT 1 FROM B SLOT 3
+                INPUT 1 FROM B SLOT 5
+                OUTPUT TO S
+            END
         END
     ELSE IF B SLOT 1 HAS = 3 THEN
         --WE MULTIPLYING
         IF B SLOT 2 HAS > 0 THEN
-            INPUT 1 FROM B SLOT 3
-            OUTPUT TO B SLOT 5
+            IF B SLOT 3 HAS >= 100000000 THEN
+                INPUT 100000000 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 100000000 FROM S
+                OUTPUT TO B SLOT 4
+            ELSE IF B SLOT 3 HAS >= 1000000 THEN
+                INPUT 1000000 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 1000000 FROM S
+                OUTPUT TO B SLOT 4
+            ELSE IF B SLOT 3 HAS >= 10000 THEN
+                INPUT 10000 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 10000 FROM S
+                OUTPUT TO B SLOT 4
+            ELSE IF B SLOT 3 HAS >= 100 THEN
+                INPUT 100 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 100 FROM S
+                OUTPUT TO B SLOT 4
+            ELSE
+                INPUT 1 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 4
+            END
             FORGET
-            INPUT 1 FROM S
-            OUTPUT TO B SLOT 4
             IF B SLOT 3 HAS = 0 THEN
                 INPUT FROM B SLOT 5
                 OUTPUT TO B SLOT 3
@@ -54,6 +99,7 @@ EVERY 1 TICK DO
     ELSE IF B SLOT 1 HAS = 4 THEN
         --WE DIVIDING
         IF B SLOT 2 HAS > 0 THEN
+            --FIGURE OUT HOW TO SPEEDUP LATER
             INPUT 1 FROM B SLOT 3
             OUTPUT TO B SLOT 5
             FORGET

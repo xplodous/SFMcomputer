@@ -17,7 +17,32 @@ EVERY 1 TICK DO
             OUTPUT TO S
             FORGET
         ELSE
-            INPUT 1 FROM B SLOT 4
+            IF B SLOT 4 HAS >= 100000000 THEN
+                INPUT 100000000 FROM S
+                OUTPUT TO B SLOT 3 -- ADD 1 TO VALUE
+                FORGET
+                INPUT 100000000 FROM B SLOT 4
+            ELSE IF B SLOT 4 HAS >= 1000000 THEN
+                INPUT 1000000 FROM S
+                OUTPUT TO B SLOT 3 -- ADD 1 TO VALUE
+                FORGET
+                INPUT 1000000 FROM B SLOT 4
+            ELSE IF B SLOT 4 HAS >= 10000 THEN
+                INPUT 10000 FROM S
+                OUTPUT TO B SLOT 3 -- ADD 1 TO VALUE
+                FORGET
+                INPUT 10000 FROM B SLOT 4
+            ELSE IF B SLOT 4 HAS >= 100 THEN
+                INPUT 100 FROM S
+                OUTPUT TO B SLOT 3 -- ADD 1 TO VALUE
+                FORGET
+                INPUT 100 FROM B SLOT 4
+            ELSE
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 3 -- ADD 1 TO VALUE
+                FORGET
+                INPUT 1 FROM B SLOT 4
+            END
             --MOVE ONE ITEM BACK INTO D
             IF B SLOT 2 HAS = 0 THEN
                 OUTPUT TO D SLOT 0
@@ -183,8 +208,7 @@ EVERY 1 TICK DO
                 OUTPUT TO D SLOT 80
             END
             FORGET
-            INPUT 1 FROM S
-            OUTPUT TO B SLOT 3 -- ADD 1 TO VALUE
+            
         END
     END
 END
