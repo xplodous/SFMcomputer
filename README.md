@@ -28,9 +28,10 @@ The CPU must be connected to 7 things:
 
 NOTES:
 
-- Division is done at one item per tick: therefore, large numbers take a long time to calculate. A fix is planned to partially alleviate this
+- Division is done at one item per tick: therefore, large numbers take a long time to calculate. All other operations's time taken scales with log base 10
 - A screen was originally planned, but scrapped due to a factor called "needing to build it in-game"
 - Non-positive or non-integer numbers are not planned
+- Math that results in a number at maxint completely breaks, basically. Support to add a error message is planned
 
 
 INSTRUCTIONS:
