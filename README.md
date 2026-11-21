@@ -39,53 +39,53 @@ INSTRUCTIONS:
 
 0: HALT
 
-Stops the program
+	Stops the program
 
 1: ADD(a,b,r)
 
-Writes the sum of index a and index b into index r
+	Writes the sum of index a and index b into index r
 
 2: DIFF(a,b,r)
 
-Writes the difference of index a and index b into index r
+	Writes the difference of index a and index b into index r
 
 3: MULT(a,b,r)
 
-Writes the product of index a and index b into index r
+	Writes the product of index a and index b into index r
 
 4: DIV(a,b,r)
 
-Writes the truncated quotient of index a and index b into index r
+	Writes the truncated quotient of index a and index b into index r
 
 5: JMPTO(i)
 
-Jump program counter to i
+	Jump program counter to i
 
 6: JMPC(i,b)
 
-Jump program counter to i if index b=0
+	Jump program counter to i if index b=0
 
 7: SET(i,a)
 
-Set index i to value a
+	Set index i to value a
 
 8: INC(i)
 
-Increment the value at index i
+	Increment the value at index i
 
 9: DEC(i)
 
-Decrement the value at index i
+	Decrement the value at index i
 
 10: WAIT
 
-Wait until redstone signal
+	Wait until redstone signal
 
 11: COPY(a,b)
 
-Copy a value from index a to index b
+	Copy a value from index a to index b
 
 12: INPUT(i)
 
-Wait until redstone signal, then put the value from B slot 3 into index i
+	Wait until redstone signal, then put the value from B slot 3 into index i
 
