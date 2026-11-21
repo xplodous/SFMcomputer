@@ -100,12 +100,42 @@ EVERY 1 TICK DO
         --WE DIVIDING
         IF B SLOT 2 HAS > 0 THEN
             --FIGURE OUT HOW TO SPEEDUP LATER
-            INPUT 1 FROM B SLOT 3
-            OUTPUT TO B SLOT 5
-            FORGET
-            INPUT 1 FROM B SLOT 2
-            OUTPUT TO S
-            FORGET
+            IF B SLOT 3 HAS >= 100000000 AND B SLOT 2 HAS >= 100000000 THEN
+                INPUT 100000000 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 100000000 FROM B SLOT 2
+                OUTPUT TO S
+                FORGET
+            ELSE IF B SLOT 3 HAS >= 1000000 AND B SLOT 2 HAS >= 1000000 THEN
+                INPUT 1000000 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 1000000 FROM B SLOT 2
+                OUTPUT TO S
+                FORGET
+            ELSE IF B SLOT 3 HAS >= 10000 AND B SLOT 2 HAS >= 10000 THEN
+                INPUT 10000 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 10000 FROM B SLOT 2
+                OUTPUT TO S
+                FORGET
+            ELSE IF B SLOT 3 HAS >= 100 AND B SLOT 2 HAS >= 100 THEN
+                INPUT 100 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 100 FROM B SLOT 2
+                OUTPUT TO S
+                FORGET
+            ELSE
+                INPUT 1 FROM B SLOT 3
+                OUTPUT TO B SLOT 5
+                FORGET
+                INPUT 1 FROM B SLOT 2
+                OUTPUT TO S
+                FORGET
+            END
             IF B SLOT 3 HAS = 0 THEN
                 INPUT FROM B SLOT 5
                 OUTPUT TO B SLOT 3
