@@ -28,11 +28,9 @@ The CPU must be connected to 7 things:
 
 NOTES:
 
-Many operations are done at one item per tick: therefore, large numbers take a long time to calculate. A fix is planned to partially alleviate this
-
-A screen was originally planned, but scrapped due to a factor called "needing to build it in-game"
-
-Non-positive or non-integer numbers are not planned
+- Many operations are done at one item per tick: therefore, large numbers take a long time to calculate. A fix is planned to partially alleviate this
+- A screen was originally planned, but scrapped due to a factor called "needing to build it in-game"
+- Non-positive or non-integer numbers are not planned
 
 
 INSTRUCTIONS:
