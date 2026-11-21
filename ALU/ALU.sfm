@@ -1,0 +1,79 @@
+EVERY 1 TICK DO
+    IF B SLOT 1 HAS = 1 THEN
+        --WE ADDING
+        INPUT FROM B SLOT 2
+        INPUT FROM B SLOT 3
+        OUTPUT TO B SLOT 4
+        FORGET
+        INPUT FROM S
+        OUTPUT RETAIN 5 TO B SLOT 1
+    ELSE IF B SLOT 1 HAS = 2 THEN
+        --WE SUBTRACTING
+        INPUT FROM B SLOT 2
+        OUTPUT TO B SLOT 5
+        IF B SLOT 5 HAS = 0 THEN
+            INPUT FROM B SLOT 3
+            OUTPUT TO B SLOT 4
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 5 TO B SLOT 1
+        ELSE IF B SLOT 3 HAS = 0 THEN
+            INPUT FROM B SLOT 5
+            OUTPUT TO B SLOT 4
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 5 TO B SLOT 1
+        ELSE
+            INPUT 1 FROM B SLOT 3
+            INPUT 1 FROM B SLOT 5
+            OUTPUT TO S
+        END
+    ELSE IF B SLOT 1 HAS = 3 THEN
+        --WE MULTIPLYING
+        IF B SLOT 2 HAS > 0 THEN
+            INPUT 1 FROM B SLOT 3
+            OUTPUT TO B SLOT 5
+            FORGET
+            INPUT 1 FROM S
+            OUTPUT TO B SLOT 4
+            IF B SLOT 3 HAS = 0 THEN
+                INPUT FROM B SLOT 5
+                OUTPUT TO B SLOT 3
+                FORGET
+                INPUT 1 FROM B SLOT 2
+                OUTPUT TO S
+                FORGET
+            END
+        ELSE
+            INPUT FROM B SLOT 3
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 5 TO B SLOT 1 
+        END
+    ELSE IF B SLOT 1 HAS = 4 THEN
+        --WE DIVIDING
+        IF B SLOT 2 HAS > 0 THEN
+            INPUT 1 FROM B SLOT 3
+            OUTPUT TO B SLOT 5
+            FORGET
+            INPUT 1 FROM B SLOT 2
+            OUTPUT TO S
+            FORGET
+            IF B SLOT 3 HAS = 0 THEN
+                INPUT FROM B SLOT 5
+                OUTPUT TO B SLOT 3
+                FORGET
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 4
+            END
+        ELSE
+            INPUT FROM B SLOT 3
+            INPUT FROM B SLOT 5
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 5 TO B SLOT 1
+        END
+    END
+END

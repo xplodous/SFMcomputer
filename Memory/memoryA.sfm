@@ -1,0 +1,191 @@
+EVERY 5 TICK DO
+    IF B SLOT 1 HAS = 1 THEN
+        --ACTUALLY DO STUFF
+        IF B SLOT 2 HAS > 80 THEN
+            INPUT FROM S
+            OUTPUT 1 TO N SLOT 1
+            FORGET
+            -- NOT MY PROBLEM
+            INPUT FROM B SLOT 2
+            OUTPUT 81 TO S
+            OUTPUT TO N SLOT 2 -- GIVE N GUY OUR INDEX - 81
+            FORGET
+            INPUT FROM B SLOT 3 -- PASS ON THE VALUE
+            OUTPUT TO N SLOT 3
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 3 TO B SLOT 1 -- DISABLE MYSELF
+            FORGET
+        ELSE
+            FORGET
+            IF B SLOT 2 HAS = 0 THEN
+                INPUT FROM D SLOT 0
+            ELSE IF B SLOT 2 HAS = 1 THEN
+                INPUT FROM D SLOT 1
+            ELSE IF B SLOT 2 HAS = 2 THEN
+                INPUT FROM D SLOT 2
+            ELSE IF B SLOT 2 HAS = 3 THEN
+                INPUT FROM D SLOT 3
+            ELSE IF B SLOT 2 HAS = 4 THEN
+                INPUT FROM D SLOT 4
+            ELSE IF B SLOT 2 HAS = 5 THEN
+                INPUT FROM D SLOT 5
+            ELSE IF B SLOT 2 HAS = 6 THEN
+                INPUT FROM D SLOT 6
+            ELSE IF B SLOT 2 HAS = 7 THEN
+                INPUT FROM D SLOT 7
+            ELSE IF B SLOT 2 HAS = 8 THEN
+                INPUT FROM D SLOT 8
+            ELSE IF B SLOT 2 HAS = 9 THEN
+                INPUT FROM D SLOT 9
+            ELSE IF B SLOT 2 HAS = 10 THEN
+                INPUT FROM D SLOT 10
+            ELSE IF B SLOT 2 HAS = 11 THEN
+                INPUT FROM D SLOT 11
+            ELSE IF B SLOT 2 HAS = 12 THEN
+                INPUT FROM D SLOT 12
+            ELSE IF B SLOT 2 HAS = 13 THEN
+                INPUT FROM D SLOT 13
+            ELSE IF B SLOT 2 HAS = 14 THEN
+                INPUT FROM D SLOT 14
+            ELSE IF B SLOT 2 HAS = 15 THEN
+                INPUT FROM D SLOT 15
+            ELSE IF B SLOT 2 HAS = 16 THEN
+                INPUT FROM D SLOT 16
+            ELSE IF B SLOT 2 HAS = 17 THEN
+                INPUT FROM D SLOT 17
+            ELSE IF B SLOT 2 HAS = 18 THEN
+                INPUT FROM D SLOT 18
+            ELSE IF B SLOT 2 HAS = 19 THEN
+                INPUT FROM D SLOT 19
+            ELSE IF B SLOT 2 HAS = 20 THEN
+                INPUT FROM D SLOT 20
+            ELSE IF B SLOT 2 HAS = 21 THEN
+                INPUT FROM D SLOT 21
+            ELSE IF B SLOT 2 HAS = 22 THEN
+                INPUT FROM D SLOT 22
+            ELSE IF B SLOT 2 HAS = 23 THEN
+                INPUT FROM D SLOT 23
+            ELSE IF B SLOT 2 HAS = 24 THEN
+                INPUT FROM D SLOT 24
+            ELSE IF B SLOT 2 HAS = 25 THEN
+                INPUT FROM D SLOT 25
+            ELSE IF B SLOT 2 HAS = 26 THEN
+                INPUT FROM D SLOT 26
+            ELSE IF B SLOT 2 HAS = 27 THEN
+                INPUT FROM D SLOT 27
+            ELSE IF B SLOT 2 HAS = 28 THEN
+                INPUT FROM D SLOT 28
+            ELSE IF B SLOT 2 HAS = 29 THEN
+                INPUT FROM D SLOT 29
+            ELSE IF B SLOT 2 HAS = 30 THEN
+                INPUT FROM D SLOT 30
+            ELSE IF B SLOT 2 HAS = 31 THEN
+                INPUT FROM D SLOT 31
+            ELSE IF B SLOT 2 HAS = 32 THEN
+                INPUT FROM D SLOT 32
+            ELSE IF B SLOT 2 HAS = 33 THEN
+                INPUT FROM D SLOT 33
+            ELSE IF B SLOT 2 HAS = 34 THEN
+                INPUT FROM D SLOT 34
+            ELSE IF B SLOT 2 HAS = 35 THEN
+                INPUT FROM D SLOT 35
+            ELSE IF B SLOT 2 HAS = 36 THEN
+                INPUT FROM D SLOT 36
+            ELSE IF B SLOT 2 HAS = 37 THEN
+                INPUT FROM D SLOT 37
+            ELSE IF B SLOT 2 HAS = 38 THEN
+                INPUT FROM D SLOT 38
+            ELSE IF B SLOT 2 HAS = 39 THEN
+                INPUT FROM D SLOT 39
+            ELSE IF B SLOT 2 HAS = 40 THEN
+                INPUT FROM D SLOT 40
+            ELSE IF B SLOT 2 HAS = 41 THEN
+                INPUT FROM D SLOT 41
+            ELSE IF B SLOT 2 HAS = 42 THEN
+                INPUT FROM D SLOT 42
+            ELSE IF B SLOT 2 HAS = 43 THEN
+                INPUT FROM D SLOT 43
+            ELSE IF B SLOT 2 HAS = 44 THEN
+                INPUT FROM D SLOT 44
+            ELSE IF B SLOT 2 HAS = 45 THEN
+                INPUT FROM D SLOT 45
+            ELSE IF B SLOT 2 HAS = 46 THEN
+                INPUT FROM D SLOT 46
+            ELSE IF B SLOT 2 HAS = 47 THEN
+                INPUT FROM D SLOT 47
+            ELSE IF B SLOT 2 HAS = 48 THEN
+                INPUT FROM D SLOT 48
+            ELSE IF B SLOT 2 HAS = 49 THEN
+                INPUT FROM D SLOT 49
+            ELSE IF B SLOT 2 HAS = 50 THEN
+                INPUT FROM D SLOT 50
+            ELSE IF B SLOT 2 HAS = 51 THEN
+                INPUT FROM D SLOT 51
+            ELSE IF B SLOT 2 HAS = 52 THEN
+                INPUT FROM D SLOT 52
+            ELSE IF B SLOT 2 HAS = 53 THEN
+                INPUT FROM D SLOT 53
+            ELSE IF B SLOT 2 HAS = 54 THEN
+                INPUT FROM D SLOT 54
+            ELSE IF B SLOT 2 HAS = 55 THEN
+                INPUT FROM D SLOT 55
+            ELSE IF B SLOT 2 HAS = 56 THEN
+                INPUT FROM D SLOT 56
+            ELSE IF B SLOT 2 HAS = 57 THEN
+                INPUT FROM D SLOT 57
+            ELSE IF B SLOT 2 HAS = 58 THEN
+                INPUT FROM D SLOT 58
+            ELSE IF B SLOT 2 HAS = 59 THEN
+                INPUT FROM D SLOT 59
+            ELSE IF B SLOT 2 HAS = 60 THEN
+                INPUT FROM D SLOT 60
+            ELSE IF B SLOT 2 HAS = 61 THEN
+                INPUT FROM D SLOT 61
+            ELSE IF B SLOT 2 HAS = 62 THEN
+                INPUT FROM D SLOT 62
+            ELSE IF B SLOT 2 HAS = 63 THEN
+                INPUT FROM D SLOT 63
+            ELSE IF B SLOT 2 HAS = 64 THEN
+                INPUT FROM D SLOT 64
+            ELSE IF B SLOT 2 HAS = 65 THEN
+                INPUT FROM D SLOT 65
+            ELSE IF B SLOT 2 HAS = 66 THEN
+                INPUT FROM D SLOT 66
+            ELSE IF B SLOT 2 HAS = 67 THEN
+                INPUT FROM D SLOT 67
+            ELSE IF B SLOT 2 HAS = 68 THEN
+                INPUT FROM D SLOT 68
+            ELSE IF B SLOT 2 HAS = 69 THEN
+                INPUT FROM D SLOT 69
+            ELSE IF B SLOT 2 HAS = 70 THEN
+                INPUT FROM D SLOT 70
+            ELSE IF B SLOT 2 HAS = 71 THEN
+                INPUT FROM D SLOT 71
+            ELSE IF B SLOT 2 HAS = 72 THEN
+                INPUT FROM D SLOT 72
+            ELSE IF B SLOT 2 HAS = 73 THEN
+                INPUT FROM D SLOT 73
+            ELSE IF B SLOT 2 HAS = 74 THEN
+                INPUT FROM D SLOT 74
+            ELSE IF B SLOT 2 HAS = 75 THEN
+                INPUT FROM D SLOT 75
+            ELSE IF B SLOT 2 HAS = 76 THEN
+                INPUT FROM D SLOT 76
+            ELSE IF B SLOT 2 HAS = 77 THEN
+                INPUT FROM D SLOT 77
+            ELSE IF B SLOT 2 HAS = 78 THEN
+                INPUT FROM D SLOT 78
+            ELSE IF B SLOT 2 HAS = 79 THEN
+                INPUT FROM D SLOT 79
+            ELSE IF B SLOT 2 HAS = 80 THEN
+                INPUT FROM D SLOT 80
+            END
+            OUTPUT TO B SLOT 4
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 5 TO B SLOT 1 -- MARK AS PULLING
+            FORGET
+        END
+    END
+END

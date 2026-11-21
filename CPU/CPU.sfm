@@ -1,0 +1,526 @@
+EVERY 1 TICK DO
+    IF B SLOT 1 HAS = 1 AND RAM SLOT 1 HAS = 0 THEN
+        -- DEFAULT
+        IF P SLOT 1 HAS = 0 THEN
+            -- REQUEST PROGRAM
+            IF PC HAS = 0 THEN
+                INPUT FROM B SLOT 2
+                OUTPUT TO PC
+                FORGET
+                INPUT FROM S
+                OUTPUT 1 TO P SLOT 1
+            ELSE
+                INPUT 1 FROM PC
+                OUTPUT TO P SLOT 2
+                FORGET
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 2
+            END
+        ELSE IF P SLOT 1 HAS = 4 THEN
+            -- IMPORTANT STUFF
+            IF P SLOT 3 HAS = 0 THEN
+                INPUT FROM B SLOT 1 
+                OUTPUT TO S
+            ELSE IF P SLOT 3 HAS < 5 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 2 TO B SLOT 1
+                FORGET
+                INPUT FROM P SLOT 3
+                OUTPUT TO B SLOT 3
+            ELSE IF P SLOT 3 HAS = 5 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 9 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 6 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 5 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 7 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 7 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 8 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 10 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 9 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 12 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 10 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 13 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 11 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 14 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 12 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 15 TO B SLOT 1
+            ELSE IF P SLOT 3 HAS = 64 THEN
+                INPUT FROM S
+                OUTPUT RETAIN 404 TO B SLOT 1
+            END
+            FORGET
+            INPUT 1 FROM S
+            OUTPUT TO PC
+            FORGET
+            INPUT FROM P
+            OUTPUT TO S
+        END
+    ELSE IF B SLOT 1 HAS = 2 OR B SLOT 1 HAS = 3 THEN
+        -- MATH TIME 1 AND 2
+        IF RAM SLOT 1 HAS = 4 THEN
+            INPUT FROM RAM SLOT 3
+            IF B SLOT 1 HAS = 2 THEN
+                OUTPUT TO ALU SLOT 2
+            ELSE 
+                OUTPUT TO ALU SLOT 3
+                FORGET
+                INPUT FROM B SLOT 3
+                OUTPUT TO ALU SLOT 1
+            END
+            FORGET
+            INPUT FROM RAM 
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT 1 TO PC
+            OUTPUT 1 TO B SLOT 1
+            FORGET
+        ELSE IF RAM SLOT 1 HAS = 0 THEN
+            IF P SLOT 1 HAS = 0 THEN
+                -- REQUEST PROGRAM
+                IF PC HAS = 0 THEN
+                    INPUT FROM B SLOT 2
+                    OUTPUT TO PC
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 1 TO P SLOT 1
+                    FORGET
+                ELSE
+                    INPUT 1 FROM PC
+                    OUTPUT TO P SLOT 2
+                    FORGET
+                    INPUT 1 FROM S
+                    OUTPUT TO B SLOT 2
+                    FORGET
+                END
+            ELSE IF P SLOT 1 HAS = 4 THEN
+                INPUT FROM P SLOT 3
+                OUTPUT TO RAM SLOT 2
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO RAM SLOT 1
+                FORGET
+                INPUT FROM P SLOT 1
+                OUTPUT TO S
+                FORGET
+            END
+        END
+    ELSE IF B SLOT 1 HAS = 4 THEN
+        -- MATH TIME 3
+        IF RAM SLOT 1 HAS = 0 THEN
+            IF ALU SLOT 1 HAS = 5 THEN
+                --OOP, ALU JUST FINISHED
+                IF P SLOT 1 HAS = 0 THEN
+                    -- REQUEST PROGRAM
+                    IF PC HAS = 0 THEN
+                        INPUT FROM B SLOT 2
+                        OUTPUT TO PC
+                        FORGET
+                        INPUT FROM S
+                        OUTPUT RETAIN 1 TO P SLOT 1
+                        FORGET
+                    ELSE
+                        INPUT 1 FROM PC
+                        OUTPUT TO P SLOT 2
+                        FORGET
+                        INPUT 1 FROM S
+                        OUTPUT TO B SLOT 2
+                        FORGET
+                    END
+                ELSE IF P SLOT 1 HAS = 4 THEN
+                    -- WHEN PROGRAM IS DONE
+                    INPUT FROM P SLOT 3
+                    OUTPUT TO RAM SLOT 2 -- SET INDEX
+                    FORGET
+                    INPUT FROM ALU SLOT 4
+                    OUTPUT TO RAM SLOT 3 -- SET VALUE
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 2 TO RAM SLOT 1 -- MARK AS PUSH
+                    FORGET
+                    INPUT FROM ALU
+                    INPUT FROM P
+                    OUTPUT TO S -- CLEAN UP
+                    FORGET
+                END
+            END
+        ELSE IF RAM SLOT 1 HAS = 4 THEN 
+            -- WHEN EVERYTHING IS DONE
+            INPUT FROM RAM
+            INPUT FROM B SLOT 1
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 1 TO B SLOT 1
+            OUTPUT 1 TO PC
+        END
+    ELSE IF B SLOT 1 HAS = 5 THEN
+        -- CONDITIONAL JUMP PART 1
+        IF P SLOT 1 HAS = 0 THEN
+            -- REQUEST PROGRAM
+            IF PC HAS = 0 THEN
+                INPUT FROM B SLOT 2
+                OUTPUT TO PC
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO P SLOT 1
+                FORGET
+            ELSE
+                INPUT 1 FROM PC
+                OUTPUT TO P SLOT 2
+                FORGET
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 2
+                FORGET
+            END
+        ELSE IF P SLOT 1 HAS = 4 THEN
+            -- WHEN PROGRAM IS DONE
+            INPUT FROM P SLOT 3
+            OUTPUT TO B SLOT 3 -- WRITE DOWN INDEX
+            FORGET
+            INPUT FROM S
+            OUTPUT 1 TO PC -- INCREMENT PROGRAM COUNTER
+            OUTPUT RETAIN 6 TO B SLOT 1
+            FORGET
+            INPUT FROM P
+            OUTPUT TO S -- CLEAN UP
+            FORGET
+        END
+    ELSE IF B SLOT 1 HAS = 6 THEN
+        -- CONDITIONAL JUMP PART 2
+        IF RAM SLOT 1 HAS = 4 THEN
+            -- SHOULD WE JUMP?
+            IF RAM SLOT 3 HAS = 0 THEN
+                -- YEAH JUMP
+                INPUT FROM PC
+                OUTPUT TO S
+                FORGET
+                INPUT FROM B SLOT 3
+                OUTPUT TO PC
+                FORGET
+            ELSE
+                -- NAH DONT JUMP
+                INPUT FROM S
+                OUTPUT 1 TO PC
+            END
+            INPUT FROM RAM
+            INPUT FROM P
+            INPUT FROM B SLOT 3
+            OUTPUT TO S
+            FORGET
+            INPUT FROM B SLOT 1
+            OUTPUT 5 TO S
+        ELSE IF RAM SLOT 1 HAS = 0 THEN
+            IF P SLOT 1 HAS = 0 THEN
+                -- REQUEST PROGRAM
+                IF PC HAS = 0 THEN
+                    INPUT FROM B SLOT 2
+                    OUTPUT TO PC
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 1 TO P SLOT 1
+                    FORGET
+                ELSE
+                    INPUT 1 FROM PC
+                    OUTPUT TO P SLOT 2
+                    FORGET
+                    INPUT 1 FROM S
+                    OUTPUT TO B SLOT 2
+                    FORGET
+                END
+            ELSE IF P SLOT 1 HAS = 4 THEN
+                INPUT FROM P SLOT 3
+                OUTPUT TO RAM SLOT 2
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO RAM SLOT 1
+                FORGET
+                INPUT FROM P SLOT 1
+                OUTPUT TO S
+                FORGET
+            END
+        END
+    ELSE IF B SLOT 1 HAS = 7 OR B SLOT 1 HAS = 8 THEN
+        -- SET
+        IF RAM SLOT 1 HAS = 0 THEN
+            IF P SLOT 1 HAS = 0 THEN
+                -- REQUEST PROGRAM
+                IF PC HAS = 0 THEN
+                    INPUT FROM B SLOT 2
+                    OUTPUT TO PC
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 1 TO P SLOT 1
+                    FORGET
+                ELSE
+                    INPUT 1 FROM PC
+                    OUTPUT TO P SLOT 2
+                    FORGET
+                    INPUT 1 FROM S
+                    OUTPUT TO B SLOT 2
+                    FORGET
+                END
+            ELSE IF P SLOT 1 HAS = 4 THEN
+                INPUT FROM P SLOT 3
+                IF B SLOT 1 HAS = 7 THEN
+                    OUTPUT TO RAM SLOT 2
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 8 TO B SLOT 1
+                    OUTPUT 1 TO PC
+                ELSE
+                    OUTPUT TO RAM SLOT 3
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 2 TO RAM SLOT 1
+                    FORGET
+                END
+                INPUT FROM P
+                OUTPUT TO S
+                FORGET
+            END
+        ELSE IF RAM SLOT 1 HAS = 4 THEN
+            -- CLEANUP
+            INPUT FROM P
+            INPUT FROM RAM
+            INPUT FROM B SLOT 1
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT 1 TO PC
+            OUTPUT RETAIN 1 TO B SLOT 1
+            FORGET
+        END
+    ELSE IF B SLOT 1 HAS = 9 THEN
+        -- JUMP
+        IF P SLOT 1 HAS = 0 THEN
+            -- REQUEST PROGRAM
+            IF PC HAS = 0 THEN
+                INPUT FROM B SLOT 2
+                OUTPUT TO PC
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO P SLOT 1
+                FORGET
+            ELSE
+                INPUT 1 FROM PC
+                OUTPUT TO P SLOT 2
+                FORGET
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 2
+                FORGET
+            END
+        ELSE IF P SLOT 1 HAS = 4 THEN
+            INPUT FROM PC
+            OUTPUT TO S
+            FORGET
+            INPUT FROM P SLOT 3
+            OUTPUT TO PC
+            FORGET
+            INPUT FROM P
+            INPUT FROM B SLOT 1
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT 1 TO B SLOT 1
+            FORGET
+        END
+    ELSE IF B SLOT 1 HAS = 10 OR B SLOT 1 HAS = 12 THEN
+        IF RAM SLOT 1 HAS = 4 THEN
+            IF B SLOT 1 HAS = 10 THEN
+                INPUT FROM S
+                OUTPUT 1 TO RAM SLOT 3
+                OUTPUT 1 TO B SLOT 1
+                FORGET
+            ELSE
+                INPUT 1 FROM RAM SLOT 3
+                INPUT 1 FROM B SLOT 1
+                OUTPUT TO S
+                FORGET
+            END
+            INPUT FROM RAM SLOT 1
+            OUTPUT TO S
+            FORGET
+        ELSE IF RAM SLOT 1 HAS = 0 THEN
+            IF P SLOT 1 HAS = 0 THEN
+                -- REQUEST PROGRAM
+                IF PC HAS = 0 THEN
+                    INPUT FROM B SLOT 2
+                    OUTPUT TO PC
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 1 TO P SLOT 1
+                    FORGET
+                ELSE
+                    INPUT 1 FROM PC
+                    OUTPUT TO P SLOT 2
+                    FORGET
+                    INPUT 1 FROM S
+                    OUTPUT TO B SLOT 2
+                    FORGET
+                END
+            ELSE IF P SLOT 1 HAS = 4 THEN
+                INPUT FROM P SLOT 3
+                OUTPUT TO RAM SLOT 2
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO RAM SLOT 1
+                FORGET
+                INPUT FROM P SLOT 1
+                OUTPUT TO S
+                FORGET
+            END
+        END
+    ELSE IF B SLOT 1 HAS = 11 THEN
+        -- PUT IT BACK
+        IF RAM SLOT 1 HAS = 4 THEN
+            INPUT FROM B SLOT 1
+            INPUT FROM RAM
+            INPUT FROM P
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 1 TO B SLOT 1
+            OUTPUT 1 TO PC
+            FORGET -- WHEN ALL IS SAID AND DONE
+        ELSE IF RAM SLOT 1 HAS = 0 THEN
+            IF P SLOT 1 HAS = 0 THEN
+                -- REQUEST PROGRAM
+                IF PC HAS = 0 THEN
+                    INPUT FROM B SLOT 2
+                    OUTPUT TO PC
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 1 TO P SLOT 1
+                    FORGET
+                ELSE
+                    INPUT 1 FROM PC
+                    OUTPUT TO P SLOT 2
+                    FORGET
+                    INPUT 1 FROM S
+                    OUTPUT TO B SLOT 2
+                    FORGET
+                END
+            ELSE IF P SLOT 1 HAS = 4 THEN
+                INPUT FROM P SLOT 3
+                OUTPUT TO RAM SLOT 2
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 2 TO RAM SLOT 1
+                FORGET
+                INPUT FROM P SLOT 1
+                OUTPUT TO S
+                FORGET
+            END
+        END
+    ELSE IF B SLOT 1 HAS = 13 THEN
+        IF B SLOT 3 HAS = 1 THEN
+            -- WELP, GO TIME
+            INPUT FROM B
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT 1 TO B SLOT 1
+            FORGET
+        END
+    ELSE IF B SLOT 1 HAS = 14 THEN
+        IF RAM SLOT 1 HAS = 4 THEN
+            INPUT FROM RAM SLOT 1
+            INPUT FROM B SLOT 1
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 11 TO B SLOT 1
+            OUTPUT 1 TO PC
+            FORGET
+        ELSE IF RAM SLOT 1 HAS = 0 THEN
+            IF P SLOT 1 HAS = 0 THEN
+                -- REQUEST PROGRAM
+                IF PC HAS = 0 THEN
+                    INPUT FROM B SLOT 2
+                    OUTPUT TO PC
+                    FORGET
+                    INPUT FROM S
+                    OUTPUT RETAIN 1 TO P SLOT 1
+                    FORGET
+                ELSE
+                    INPUT 1 FROM PC
+                    OUTPUT TO P SLOT 2
+                    FORGET
+                    INPUT 1 FROM S
+                    OUTPUT TO B SLOT 2
+                    FORGET
+                END
+            ELSE IF P SLOT 1 HAS = 4 THEN
+                INPUT FROM P SLOT 3
+                OUTPUT TO RAM SLOT 2
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO RAM SLOT 1
+                FORGET
+                INPUT FROM P SLOT 1
+                OUTPUT TO S
+                FORGET
+            END
+        END
+    ELSE IF B SLOT 1 HAS = 15 THEN
+        IF P SLOT 1 HAS = 0 THEN
+            -- REQUEST PROGRAM
+            IF PC HAS = 0 THEN
+                INPUT FROM B SLOT 2
+                OUTPUT TO PC
+                FORGET
+                INPUT FROM S
+                OUTPUT RETAIN 1 TO P SLOT 1
+                FORGET
+            ELSE
+                INPUT 1 FROM PC
+                OUTPUT TO P SLOT 2
+                FORGET
+                INPUT 1 FROM S
+                OUTPUT TO B SLOT 2
+                FORGET
+            END
+        ELSE IF P SLOT 1 HAS = 4 THEN
+            INPUT FROM P SLOT 3
+            OUTPUT TO RAM SLOT 2
+            FORGET
+            INPUT FROM S
+            OUTPUT 1 TO B SLOT 1
+            FORGET
+            INPUT FROM P SLOT 1
+            OUTPUT TO S
+            FORGET
+        END
+    ELSE IF B SLOT 1 HAS = 16 THEN
+        IF RAM SLOT 1 HAS = 4 THEN
+            INPUT FROM RAM
+            INPUT FROM B
+            OUTPUT TO S
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 1 TO B SLOT 1
+            OUTPUT 1 TO PC
+        END
+    END
+END
+
+EVERY REDSTONE PULSE DO
+    -- INPUT
+    IF B SLOT 1 HAS = 16 THEN
+        IF RAM SLOT 1 HAS = 0 THEN
+            INPUT FROM B SLOT 3
+            OUTPUT TO RAM SLOT 3
+            FORGET
+            INPUT FROM S
+            OUTPUT RETAIN 2 TO RAM SLOT 1
+        END
+    END
+END
